@@ -15,7 +15,7 @@ public class Block {
         this.offsetX = 90;
         this.offsetY = 40;
         this.nextBlockPositionX = 120;
-        this.nextBlockPositionY = 90;
+        this.nextBlockPositionY = 200;
     }
 
     public void nextPositionXY(double previousNextPositionX, double previousNextPositionY, boolean changeLine) {

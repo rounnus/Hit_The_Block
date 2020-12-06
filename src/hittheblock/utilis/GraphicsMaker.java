@@ -3,7 +3,6 @@ package hittheblock.utilis;
 import hittheblock.constants.BallConstants;
 import hittheblock.constants.BarConstants;
 import hittheblock.constants.BlockConstants;
-import hittheblock.constants.WindowConstants;
 import hittheblock.game.gamegraphics.*;
 import javafx.scene.Group;
 import javafx.scene.shape.Circle;
@@ -17,6 +16,8 @@ public class GraphicsMaker {
     private Ball ball;
     private Bar bar;
     private Block block;
+    private Rectangle prevBlock;
+    private Block tmp;
 
     public GraphicsMaker(Ball ball, Bar bar, Block block) {
         // Initialize.
@@ -25,6 +26,10 @@ public class GraphicsMaker {
         this.block = block;
     }
     public void makeBall(Group group) {
+        /*
+            In this method we do the necessary
+            functions to create a ball.
+        */
         // Here we make the ball.
         Circle graphBall = ball.getBallShape();
         // set circle attributes.
@@ -37,33 +42,22 @@ public class GraphicsMaker {
     }
 
     public void makeBar(Group group) {
+        /*
+            In this method we do all the necessary
+            procedures to create a bar.
+        */
         Rectangle barGraph = bar.getBar();
         barGraph.setX(bar.getBarPositionX());
         barGraph.setY(BarConstants.BAR_POSITION_ON_Y);
         barGraph.setWidth(BarConstants.BAR_WEIGHT);
         barGraph.setHeight(BarConstants.BAR_HEIGHT);
         barGraph.setFill(BarConstants.BAR_COLOR);
-
+        // add bar to the group of contents as a new node.
         group.getChildren().add(barGraph);
     }
 
-    public void makeBlock(Group group) {
-        Block tmp = null;
-        Rectangle prevBlock = null;
-        for (int number=0; number < WindowConstants.NUMBER_OF_BLOCKS; number++) {
-            tmp = new Block();
-            if (number > 0) {
-                tmp.nextPositionXY(prevBlock.getX(), prevBlock.getY(), false);
-            }
-            tmp.getBlockShape().setX(tmp.getNextBlockPositionX());
-            tmp.getBlockShape().setY(tmp.getNextBlockPositionY());
-            tmp.getBlockShape().setWidth(BlockConstants.BLOCK_WEIGHT);
-            tmp.getBlockShape().setHeight(BlockConstants.BLOCK_HEIGHT);
-            tmp.getBlockShape().setFill(BarConstants.BAR_COLOR);
-            group.getChildren().add(tmp.getBlockShape());
-            prevBlock = tmp.getBlockShape();
-        }
-    }
+    // make rows and collumns for blocks
+    // TODO: 12/6/20  
 
     public void start() {
         ball.startMoving();

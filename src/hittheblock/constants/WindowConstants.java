@@ -8,5 +8,4 @@ public class WindowConstants {
     public static final double WINDOW_BOUNDARY_X = 1050;
     public static final double WINDOW_BOUNDARY_Y = 700;
     public static final double WINDOW_MINIMUM_X_Y = 0;
-    public static final double NUMBER_OF_BLOCKS = 9;
 }

@@ -16,11 +16,11 @@ public class UserInterface {
     }
 
     public Scene configureUI(Group group) {
-        // Οριζουμε την οθονη.
+        // We define attributes for the scene.
         scene = new Scene(group, WindowConstants.WINDOW_BOUNDARY_X, WindowConstants.WINDOW_BOUNDARY_Y);
         scene.setFill(WindowConstants.WINDOW_BACKGROUND);
         scene.setOnKeyPressed(bar.moveBarOnKeyPressed());
-        // Επιστρεφουμε.
+        // return the scene.
         return scene;
     }
 

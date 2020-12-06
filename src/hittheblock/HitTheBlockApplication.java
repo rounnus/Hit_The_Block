@@ -30,12 +30,19 @@ public class HitTheBlockApplication extends Application {
     }
 
     private void configureGraphics() {
+        /*
+            In this method we do all the necessary
+            processes so as to create the shapes
+            that represent the ball, the bar and
+            the blocks.
+        */
         graphicsMaker.makeBall(root);
         graphicsMaker.makeBar(root);
-        graphicsMaker.makeBlock(root);
+        //graphicsMaker.makeBlock(root);
     }
 
     private void configureScene() {
+        // Configuring the scene.
         scene = userInterface.configureUI(root);
     }
 
