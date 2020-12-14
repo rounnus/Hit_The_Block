@@ -1,8 +1,7 @@
 package hittheblock.game.gamegraphics;
 
-import hittheblock.constants.BallConstants;
-import hittheblock.constants.BarConstants;
-import hittheblock.constants.WindowConstants;
+import hittheblock.constants.ComponentConstants;
+import hittheblock.constants.ComponentDimensions;
 import hittheblock.game.actions.GameGraphicsActions;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -48,7 +47,7 @@ public class Ball implements GameGraphicsActions.BallActions {
             then the ball changes direction
         */
         ballShape.setCenterX(ballShape.getCenterX() + dx); // We change the position of the ball according to the speed
-        if (ballShape.getCenterX() <= WindowConstants.WINDOW_MINIMUM_X_Y + BallConstants.BALL_RADIUS || ballShape.getCenterX() >= WindowConstants.WINDOW_BOUNDARY_X - BallConstants.BALL_RADIUS) {
+        if (ballShape.getCenterX() <= ComponentDimensions.WINDOW_MINIMUM_X_Y.size + ComponentDimensions.BALL_RADIUS.size || ballShape.getCenterX() >= ComponentDimensions.WINDOW_WEIGHT.size - ComponentDimensions.BALL_RADIUS.size) {
             // If it hits the wall then we change the direction
             dx = -dx;
         }
@@ -59,7 +58,7 @@ public class Ball implements GameGraphicsActions.BallActions {
             then it will change direction
         */
         ballShape.setCenterY(ballShape.getCenterY() + dy); // We change the position of the ball according to the speed
-        if (ballShape.getCenterY() <= WindowConstants.WINDOW_MINIMUM_X_Y + BallConstants.BALL_RADIUS) {
+        if (ballShape.getCenterY() <= ComponentDimensions.WINDOW_MINIMUM_X_Y.size + ComponentDimensions.BALL_RADIUS.size) {
             // If it hits the wall then we change the direction
             dy = -dy;
         }
@@ -68,7 +67,7 @@ public class Ball implements GameGraphicsActions.BallActions {
     private void collitionOnBar() {
         // We receive information about the location of the bar.
         double currentBarPositionX = gameBar.getBarPositionX();
-        double barPositionY = BarConstants.BAR_POSITION_ON_Y;
+        double barPositionY = ComponentConstants.BAR_POSITION_ON_Y.constant;
         // If the ball crosses the bar, then the game is over.
         if (ballShape.getCenterY() > barPositionY) {
             System.exit(1);
@@ -77,8 +76,8 @@ public class Ball implements GameGraphicsActions.BallActions {
         // If the ball is in the bar area.
         if (ballShape.getCenterX() >= currentBarPositionX && ballShape.getCenterX() <= currentBarPositionX+100) {
             // If it touches the bar.
-            if (ballShape.getCenterY() + dy >= barPositionY-BallConstants.BALL_RADIUS) {
-                ballShape.setCenterY(barPositionY-BallConstants.BALL_RADIUS);
+            if (ballShape.getCenterY() + dy >= barPositionY-ComponentDimensions.BALL_RADIUS.size) {
+                ballShape.setCenterY(barPositionY-ComponentDimensions.BALL_RADIUS.size);
                 dy = -dy; // change direction.
             }
         }
@@ -96,12 +95,10 @@ public class Ball implements GameGraphicsActions.BallActions {
             wallCollitionX();
             wallCollitionY();
             collitionOnBar();
+
         }));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-
-
-
 }

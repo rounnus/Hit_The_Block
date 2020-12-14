@@ -12,7 +12,6 @@ public class HitTheBlockApplication extends Application {
     private Group root;
     private Bar bar;
     private Ball ball;
-    private Block block;
     private GraphicsMaker graphicsMaker;
     private UserInterface userInterface;
     private Scene scene;
@@ -22,8 +21,7 @@ public class HitTheBlockApplication extends Application {
         this.root = new Group();
         this.bar = new Bar();
         this.ball = new Ball(bar);
-        this.block = new Block();
-        this.graphicsMaker = new GraphicsMaker(ball, bar, block);
+        this.graphicsMaker = new GraphicsMaker(ball, bar);
         this.userInterface = new UserInterface(scene, bar);
         configureGraphics();
         configureScene();
@@ -38,7 +36,7 @@ public class HitTheBlockApplication extends Application {
         */
         graphicsMaker.makeBall(root);
         graphicsMaker.makeBar(root);
-        //graphicsMaker.makeBlock(root);
+        graphicsMaker.makeBlocks(root);
     }
 
     private void configureScene() {

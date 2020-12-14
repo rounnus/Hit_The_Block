@@ -1,7 +1,7 @@
 package hittheblock.game.gamegraphics;
 
-import hittheblock.constants.BarConstants;
-import hittheblock.constants.WindowConstants;
+import hittheblock.constants.ComponentConstants;
+import hittheblock.constants.ComponentDimensions;
 import hittheblock.game.actions.GameGraphicsActions;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -34,7 +34,7 @@ public class Bar implements GameGraphicsActions.BarActions {
             In this method we check if the ball
             is on the right wall.
         */
-        if (barPositionX >= WindowConstants.WINDOW_BOUNDARY_X - barShape.getWidth()) {
+        if (barPositionX >= ComponentDimensions.WINDOW_WEIGHT.size - barShape.getWidth()) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public class Bar implements GameGraphicsActions.BarActions {
             In this method we check if the ball
             is on the left wall.
         */
-        if (barPositionX <= WindowConstants.WINDOW_MINIMUM_X_Y) {
+        if (barPositionX <= ComponentDimensions.WINDOW_MINIMUM_X_Y.size) {
             return true;
         }
         return false;
@@ -53,14 +53,14 @@ public class Bar implements GameGraphicsActions.BarActions {
     @Override
     public void moveToRight() {
         // We moved to the right.
-        barPositionX += BarConstants.BAR_SPEED;
+        barPositionX += ComponentConstants.BAR_SPEED.constant;
         barShape.setX(barPositionX);
     }
 
     @Override
     public void moveToLeft() {
         // We moved to the left.
-        barPositionX -= BarConstants.BAR_SPEED;
+        barPositionX -= ComponentConstants.BAR_SPEED.constant;
         barShape.setX(barPositionX);
     }
     @Override
